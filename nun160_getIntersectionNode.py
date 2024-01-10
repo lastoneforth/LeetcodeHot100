@@ -4,24 +4,6 @@ class ListNode:
         self.val = x
         self.next = None
 
-
-a = ListNode(4)
-b = ListNode(1)
-c = ListNode(8)
-d = ListNode(4)
-e = ListNode(5)
-
-a.next = b
-b.next = c
-c.next = d
-d.next = e
-
-A = ListNode(5)
-B = ListNode(6)
-A.next = B
-B.next = b
-
-
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode):
 
@@ -69,6 +51,23 @@ class Solution:
 
 
 if __name__ == '__main__':
+    # 测试数据
+    a = ListNode(4)
+    b = ListNode(1)
+    c = ListNode(8)
+    d = ListNode(4)
+    e = ListNode(5)
+
+    a.next = b
+    b.next = c
+    c.next = d
+    d.next = e
+
+    A = ListNode(5)
+    B = ListNode(6)
+    A.next = B
+    B.next = b
+
     print(Solution().getIntersectionNode(a, A).val)
 
 
