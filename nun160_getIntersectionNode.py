@@ -4,50 +4,24 @@ class ListNode:
         self.val = x
         self.next = None
 
+
 class Solution:
+
     def getIntersectionNode(self, headA: ListNode, headB: ListNode):
 
-        nextA = headA
-        nextB = headB
-        lengthA = 0
-        lengthB = 0
-
-        # 计算链表A和链表B的长度
-        while True:
-            if not nextA and not nextB:
-                break
-            if nextA:
-                lengthA += 1
-                nextA = nextA.next
-            if nextB:
-                lengthB += 1
-                nextB = nextB.next
-
-        # 有一个为空都不可能相交，返回None
-        if lengthA == 0 or lengthB == 0:
+        # 双指针的办法
+        # 其实基本原理一样，都是要想办法两个链表尾部对齐，然后从到尾部相同距离开始遍历
+        # 对齐的方法相当于把A链表后面接一个B链表，B链表后面接一个A链表，这样得到两个长度相同的链表
+        ptrA = headA
+        ptrB = headB
+        if not ptrA or not ptrB:
             return None
 
-        nextA = headA
-        nextB = headB
+        while ptrA is not ptrB:
+            ptrA = ptrA.next if ptrA else headB
+            ptrB = ptrB.next if ptrB else headA
 
-        while True:
-            if lengthA == lengthB:
-                break
-            elif lengthA < lengthB:
-                nextB = nextB.next
-                lengthB -= 1
-            else:
-                nextA = nextA.next
-                lengthA -= 1
-
-        while nextA:
-            if nextA is nextB:
-                return nextA
-            else:
-                nextA = nextA.next
-                nextB = nextB.next
-
-        return None
+        return ptrA
 
 
 if __name__ == '__main__':
